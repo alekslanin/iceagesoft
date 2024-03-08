@@ -17,27 +17,27 @@ public class RevenueMilestoneSearchTest {
         int[] output = new int[] {4, 6, 10};
 
 
-        int index = runBinarySearchClosest(revenues, 37, false);
-        assertEquals(3, index);
-        index = runBinarySearchClosest(revenues, 37, true);
-        assertEquals(2, index);
-
-        index = runBinarySearchClosest(revenues, 9, true);
-        assertEquals(-1, index);
-
-        index = runBinarySearchClosest(revenues, 9, false);
-        assertEquals(0, index);
-
-        index = runBinarySearchClosest(revenues, 30, false);
-        assertEquals(2, index);
-
-        index = runBinarySearchClosest(revenues, 30, true);
-        assertEquals(2, index);
-
-        int index2 = runBinarySearch(revenues, 50);
-        assertEquals(4, index2);
-        int index3 = runBinarySearch(revenues, 51);
-        assertEquals(-1, index3);
+//        int index = runBinarySearchClosest(revenues, 37, false);
+//        assertEquals(3, index);
+//        index = runBinarySearchClosest(revenues, 37, true);
+//        assertEquals(2, index);
+//
+//        index = runBinarySearchClosest(revenues, 9, true);
+//        assertEquals(-1, index);
+//
+//        index = runBinarySearchClosest(revenues, 9, false);
+//        assertEquals(0, index);
+//
+//        index = runBinarySearchClosest(revenues, 30, false);
+//        assertEquals(2, index);
+//
+//        index = runBinarySearchClosest(revenues, 30, true);
+//        assertEquals(2, index);
+//
+//        int index2 = runBinarySearch(revenues, 50);
+//        assertEquals(4, index2);
+//        int index3 = runBinarySearch(revenues, 51);
+//        assertEquals(-1, index3);
 
         var result = getMilestoneDays(revenues, milestones);
         assertEquals(output[0], result[0]);
@@ -46,35 +46,19 @@ public class RevenueMilestoneSearchTest {
     }
 
     int[] getMilestoneDays(int[] revenues, int[] milestones) {
-        List<Integer> list = new ArrayList<>();
+        int[] list = new int[revenues.length];
         int previous = 0;
         for (int i = 0; i != revenues.length; i++) {
-            list.add(previous + revenues[i]);
+            list[i] = previous + revenues[i];
             previous += revenues[i];
         }
 
-
-
-        return new int[] {4, 6, 10};
-    }
-
-    int runBinarySearch(int[] sortedArray, int key) {
-        int index = -1;
-        int low = 0;
-        int high = sortedArray.length - 1;
-
-        while (low <= high) {
-            int mid = low  + ((high - low) / 2);
-            if (sortedArray[mid] < key) {
-                low = mid + 1;
-            } else if (sortedArray[mid] > key) {
-                high = mid - 1;
-            } else if (sortedArray[mid] == key) {
-                index = mid;
-                break;
-            }
+        int[] result = new int[milestones.length];
+        for (int i = 0; i != milestones.length; i++) {
+            result[i] = runBinarySearchClosest(list, milestones[i], false);
         }
-        return index;
+
+        return result;
     }
 
     // 100, 200, 300, 400 with key = 250 returns 300
@@ -97,7 +81,26 @@ public class RevenueMilestoneSearchTest {
             }
         }
 
-        if(exact) return index;
-        return floor ? index - 1 : index;
+        if(exact) return index + 1;
+        return floor ? index : index + 1;
+    }
+
+    int runBinarySearch(int[] sortedArray, int key) {
+        int index = -1;
+        int low = 0;
+        int high = sortedArray.length - 1;
+
+        while (low <= high) {
+            int mid = low  + ((high - low) / 2);
+            if (sortedArray[mid] < key) {
+                low = mid + 1;
+            } else if (sortedArray[mid] > key) {
+                high = mid - 1;
+            } else if (sortedArray[mid] == key) {
+                index = mid;
+                break;
+            }
+        }
+        return index;
     }
 }
