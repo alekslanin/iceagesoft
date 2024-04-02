@@ -1,7 +1,14 @@
-package coding;
+package coding.trie;
 
 import java.util.HashMap;
 
+/*
+Trie is also known as digital tree or prefix tree.
+https://www.geeksforgeeks.org/introduction-to-trie-data-structure-and-algorithm-tutorials/
+
+
+
+ */
 class Trie {
     private final TrieNode root;
 

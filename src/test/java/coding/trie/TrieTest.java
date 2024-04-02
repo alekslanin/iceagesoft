@@ -1,4 +1,4 @@
-package coding;
+package coding.trie;
 
 import org.junit.jupiter.api.Test;
 
