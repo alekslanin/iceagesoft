@@ -12,7 +12,7 @@ just like merge sort. But in quick sort all the heavy lifting(major work) is don
 while in case of merge sort, all the real work happens during merging the subarrays.
 In case of quick sort, the combine step does absolutely nothing.
 
-Where as if partitioning leads to almost equal subarrays, then the running time is the best, with time complexity as O(n*log n).
+if partitioning leads to almost equal subarrays, then the running time is the best, with time complexity as O(n*log n).
 
 Worst Case Time Complexity [ Big-O ]: O(n2)
 

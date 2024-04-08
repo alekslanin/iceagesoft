@@ -1,4 +1,4 @@
-package coding;
+package coding.arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import static graphql.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class BalancedSplitTest {
     /*
@@ -25,6 +26,9 @@ public class BalancedSplitTest {
         int []arr = new int[]{1, 5, 7, 1};
         assertTrue(balancedSplitExists(arr));
 
+        int [] arr2 = new int[]{12, 7, 6, 7, 6};
+        assertFalse(balancedSplitExists(arr2));
+
     }
 
     boolean balancedSplitExists(int[] arr) {
@@ -33,11 +37,13 @@ public class BalancedSplitTest {
         int right = 0;
         for(int i = arr.length - 1; i != 0; i--) {
             int value = arr[i];
-            left = left - value;
-            right = right + value;
+            left -= value;
+            right += value;
 
             if(value <= arr[i - 1]) break;
-            if(left > right) break;
+
+            if(left < right) break;
+
             if(left == right) return true;
         }
 

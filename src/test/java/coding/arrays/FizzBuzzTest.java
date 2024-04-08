@@ -1,9 +1,15 @@
-package coding;
+package coding.arrays;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
 
 public class FizzBuzzTest {
 
+    @Test
+    void runTest() {
+        fizz(10);
+    }
 
     void fizz(int n) {
         IntStream

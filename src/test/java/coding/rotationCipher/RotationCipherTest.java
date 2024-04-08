@@ -1,4 +1,4 @@
-package coding;
+package coding.rotationCipher;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +8,9 @@ public class RotationCipherTest {
 
     @Test
     void run() {
-//     "abcdxyzABCXYZ123".chars().forEach(x ->   System.out.println("x=" + (char)x + " int =" + (int)x));
-
-//        assertEquals("defDEF456", rotationalCipher("abcABC123", 3));
-//        assertEquals("xycXYC1", rotationalCipher("uvzUVZ8", 3));
-//        assertEquals("Cheud-726?", rotationalCipher("Zebra-493?", 3));
+        assertEquals("defDEF456", rotationalCipher("abcABC123", 3));
+        assertEquals("xycXYC1", rotationalCipher("uvzUVZ8", 3));
+        assertEquals("Cheud-726?", rotationalCipher("Zebra-493?", 3));
         assertEquals("nopqrstuvwxyzABCDEFGHIJKLM9012345678", rotationalCipher("abcdefghijklmNOPQRSTUVWXYZ0123456789", 39));
     }
 

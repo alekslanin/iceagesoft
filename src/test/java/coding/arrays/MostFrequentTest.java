@@ -1,4 +1,4 @@
-package coding;
+package coding.arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,29 +11,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MostFrequentTest {
 
-    static int mostFrequent(int arr[], int n)
-    {
+    @Test
+    void run () {
+
+        int arr[] = {40,50,30,40,50,30,30};
+        int n = arr.length;
+
+        assertEquals(30, mostFrequent(arr, n));
+    }
+
+
+    static int mostFrequent(int arr[], int n) {
         Map<Integer, Integer> hp = new HashMap<Integer, Integer>();
 
-        for(int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             int key = arr[i];
-            if(hp.containsKey(key))
-            {
+            if (hp.containsKey(key)) {
                 int freq = hp.get(key);
                 freq++;
                 hp.put(key, freq);
-            }
-            else
-            {
+            } else {
                 hp.put(key, 1);
             }
         }
 
-        // find max frequency.
+        return findMax(hp);
+    }
+
+    // find max frequency.
+    static int findMax(Map<Integer, Integer> hp) {
         Map.Entry<Integer, Integer> max = Collections.max(hp.entrySet(), comparingInt(e -> e.getValue()));
         return max.getKey();
-        /*
+    }
+
+    static int findMaxManually(Map<Integer, Integer> hp) {
         int max_count = 0, res = -1;
 
         for(Map.Entry<Integer, Integer> val : hp.entrySet())
@@ -44,17 +55,6 @@ public class MostFrequentTest {
                 max_count = val.getValue();
             }
         }
-
-        return res; */
+        return res;
     }
-
-    @Test
-    void run () {
-
-        int arr[] = {40,50,30,40,50,30,30};
-        int n = arr.length;
-
-        assertEquals(30, mostFrequent(arr, n));
-    }
-
 }

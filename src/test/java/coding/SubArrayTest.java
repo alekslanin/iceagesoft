@@ -10,11 +10,11 @@ public class SubArrayTest {
         int[] test = {3, 4, 1, 6, 2};
         int[] expected = {1, 3, 1, 5, 1};
 
-        var res = countSubarrays(test);
+        var res = countSubArrays(test);
         assertNotNull(res);
     }
 
-    int[] countSubarrays(int[] arr) {
+    int[] countSubArrays(int[] arr) {
         int[] result = new int[arr.length];
 
         for(int i = 0; i != arr.length; i++) {
