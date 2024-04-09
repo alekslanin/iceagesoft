@@ -19,6 +19,7 @@ class Trie {
     private static class TrieNode {
         // A map of child nodes indexed by the next character in the key
         private final HashMap<Character, TrieNode> children;
+
         // A flag to indicate that this node represents the end of a key
         private boolean endOfKey;
 
