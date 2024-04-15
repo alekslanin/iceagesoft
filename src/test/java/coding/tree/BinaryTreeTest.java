@@ -111,6 +111,7 @@ public class BinaryTreeTest {
         List<Node> nodes = new ArrayList<>();
         storeNodes(root, nodes);
 
+        int[] i = new int[10];
         // Constructs BST from nodes[]
         int n = nodes.size();
         return buildTree(nodes, 0, n - 1);
