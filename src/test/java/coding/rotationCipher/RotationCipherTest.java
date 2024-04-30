@@ -34,106 +34,25 @@ public class RotationCipherTest {
         } else return input;
     }
 
-    char rotate(char input, int rotationFactor, char[] array) {
+    int getPosition(char input, char[] array) {
         int position = -1;
         for (int index = 0; index < array.length; index++) {
             if (array[index] == input) {
                 position = index;
             }
         }
+        return position;
+    }
+
+    char rotate(char input, int rotationFactor, char[] array) {
+        int position = getPosition(input, array);
 
         if(position == -1) return input;
 
         int adjustedFactor = rotationFactor % array.length;
+
         int p = position + adjustedFactor;
         if(p >= array.length) p = p - array.length;
         return array[p];
-    }
-
-
-    class Cipher {
-
-        char[] numbers = "0123456789".toCharArray();
-        char[] lower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toLowerCase().toCharArray();
-        char[] upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-
-        private final int key;
-
-        private final CircularLinkedList lowercase = new CircularLinkedList();
-        private final CircularLinkedList uppercase = new CircularLinkedList();
-
-        public Cipher(int key) {
-            this.key = key;
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toLowerCase().chars().forEach(x -> lowercase.addNode((char) x));
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ".chars().forEach(x -> uppercase.addNode((char) x));
-        }
-
-        public String encode(String inputText) {
-            var buffer = new StringBuffer();
-            var chars = inputText.toCharArray();
-
-            for (int i = 0; i != chars.length; i++) {
-                var value = chars[i];
-                if (Character.isLowerCase(value)) {
-                    var shifted = lowercase.getShiftedValue(value);
-                    buffer.append(shifted);
-                } else if (Character.isUpperCase(value)) {
-                    var shifted = uppercase.getShiftedValue(value);
-                    buffer.append(shifted);
-                } else buffer.append(value);
-            }
-            return buffer.toString();
-        }
-
-
-        class Node {
-            private char value;
-            private Node nextNode;
-
-            public Node(char value) {
-                this.value = value;
-            }
-        }
-
-        public class CircularLinkedList {
-            private Node head = null;
-            private Node tail = null;
-
-            public void addNode(char value) {
-                Node newNode = new Node(value);
-
-                if (head == null) head = newNode;
-                else tail.nextNode = newNode;
-
-                tail = newNode;
-                tail.nextNode = head;
-            }
-
-            public char getShiftedValue(char value) {
-
-                int pos = key;
-                boolean shift = false;
-
-                while (true) {
-                    Node currentNode = head;
-
-                    do {
-                        if (shift) --pos;
-                        else {
-                            if (currentNode.value == value) {
-                                shift = true;
-                            }
-                        }
-
-                        if (shift && pos <= 0) {
-                            return currentNode.value;
-                        }
-
-                        currentNode = currentNode.nextNode;
-
-                    } while (currentNode != head);
-                }
-            }
-        }
     }
 }

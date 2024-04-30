@@ -21,7 +21,7 @@ public class MostFrequentTest {
     }
 
 
-    static int mostFrequent(int arr[], int n) {
+    static int mostFrequent(int[] arr, int n) {
         Map<Integer, Integer> hp = new HashMap<Integer, Integer>();
 
         for (int i = 0; i < n; i++) {

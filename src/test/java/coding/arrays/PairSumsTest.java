@@ -20,10 +20,15 @@ public class PairSumsTest {
 
     @Test
     void run() {
-        int[] arr = { 1, 5, 7, -1, 5, 5, 1 };
         int K = 6;
+
+        int[] small = {1, 5, 7, -1, 5, 5, 1, 1};
+        assertEquals(10, getPairsCount2(small, K));
+
+        int[] arr = { 1, 5, 7, -1, 5, 5, 1 };
         assertEquals(7, getPairsCount(arr, K));
         assertEquals(7, getPairsCount2(arr, K));
+
     }
 
     // naive
@@ -34,15 +39,20 @@ public class PairSumsTest {
 
         // Consider all possible pairs and check their sums
         for (int i = 0; i < arr.length; i++)
-            for (int j = i + 1; j < arr.length; j++)
-                if ((arr[i] + arr[j]) == K)
+            for (int j = i + 1; j < arr.length; j++) {
+                int s = arr[i] + arr[j];
+                if (s == K) {
                     count++;
+                }
+            }
 
         return count;
     }
 
     /* using hash map
     O(n)
+
+    Input: arr[] = {1, 5, 7, -1, 5}, K = 6
 
     1: 6 - 1 = false
     1 -> 1
@@ -67,8 +77,8 @@ public class PairSumsTest {
     5 -> 2
     7 -> 1
     1 -> 1
+    */
 
-     */
     static int getPairsCount2(int[] array, int k)
     {
         HashMap<Integer, Integer> m = new HashMap<>();
@@ -77,6 +87,7 @@ public class PairSumsTest {
         for (int value : array) {
 
             int needed = k - value;
+
             if (m.containsKey(needed)) {
                 count += m.get(needed);
             }
@@ -87,6 +98,7 @@ public class PairSumsTest {
                 m.put(value, 1);
             }
         }
+
         return count;
     }
 

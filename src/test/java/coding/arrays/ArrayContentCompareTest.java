@@ -15,6 +15,7 @@ public class ArrayContentCompareTest {
 
         Arrays.sort(array_a);
         Arrays.sort(array_b);
+
         for(int i = 0; i != array_a.length; i++) {
             if(array_a[i] != array_b[i]) return false;
         }

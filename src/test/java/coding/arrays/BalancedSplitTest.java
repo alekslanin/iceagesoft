@@ -24,17 +24,25 @@ public class BalancedSplitTest {
     @Test
     void run() {
         int []arr = new int[]{1, 5, 7, 1};
-        assertTrue(balancedSplitExists(arr));
+        assertTrue(isBalancedSplitExists(arr));
 
         int [] arr2 = new int[]{12, 7, 6, 7, 6};
-        assertFalse(balancedSplitExists(arr2));
+        assertFalse(isBalancedSplitExists(arr2));
+
+        int [] arr3 = new int[]{12, 7};
+        assertFalse(isBalancedSplitExists(arr3));
 
     }
 
-    boolean balancedSplitExists(int[] arr) {
+    boolean isBalancedSplitExists(int[] arr) {
+
         Arrays.sort(arr);
-        int left = IntStream.of(arr).sum();
+
+        int total = IntStream.of(arr).sum();
+
+        int left = total;
         int right = 0;
+
         for(int i = arr.length - 1; i != 0; i--) {
             int value = arr[i];
             left -= value;

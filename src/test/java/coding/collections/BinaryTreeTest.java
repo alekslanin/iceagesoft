@@ -1,4 +1,4 @@
-package coding.tree;
+package coding.collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +39,7 @@ public class BinaryTreeTest {
             System.out.println(" key already added :: " + value);
             return;
         }
+
         if(value < node.key) {
             if(node.left == null) {
                 node.left = new Node(value);
@@ -46,6 +47,7 @@ public class BinaryTreeTest {
                 add(node.left, value);
             }
         }
+
         if(value > node.key) {
             if(node.right == null) {
                 node.right = new Node(value);
@@ -56,16 +58,16 @@ public class BinaryTreeTest {
     }
 
     // inorder implementation
-    static public void print(Node node, List<Integer> list) {
+    static public void printToList(Node node, List<Integer> list) {
         if (node == null) return;
 
         // recur on left child
-        print(node.left, list);
+        printToList(node.left, list);
 
         list.add(node.key);
 
         // recur on right child
-        print(node.right, list);
+        printToList(node.right, list);
     }
 
     void scan(Node node, List<Integer> list) {
@@ -82,7 +84,7 @@ public class BinaryTreeTest {
     //
     BinaryTreeTest balance(Node node) {
         var list = new ArrayList<Integer>();
-        print(node, list);
+        printToList(node, list);
 
         var output = new BinaryTreeTest();
         balance(output, list);
@@ -105,13 +107,13 @@ public class BinaryTreeTest {
     //
     // balance correct
     //
-    Node build(Node root)
+    Node balanceTree(Node root)
     {
         // Store nodes of given BST in sorted order
         List<Node> nodes = new ArrayList<>();
         storeNodes(root, nodes);
 
-        int[] i = new int[10];
+        //int[] i = new int[10];
         // Constructs BST from nodes[]
         int n = nodes.size();
         return buildTree(nodes, 0, n - 1);
@@ -144,8 +146,6 @@ public class BinaryTreeTest {
     @Test
     void run()
     {
-        var list = new ArrayList<Integer>();
-
         BinaryTreeTest tree = new BinaryTreeTest();
         tree.add(1);
         tree.add(2);
@@ -159,17 +159,29 @@ public class BinaryTreeTest {
         tree.add(6);
         tree.add(7);
 
-        print(tree.root, list);
+
+        var list = new ArrayList<Integer>();
+
+        printToList(tree.root, list);
         System.out.println(list.stream().map(x -> "" + x).collect(Collectors.joining(", ")));
 
-//        var balanced = tree.balance(tree.root);
+        list.clear();
+        scan(tree.root, list);
+        System.out.println(list.stream().map(x -> "" + x).collect(Collectors.joining(", ")));
+
+//        var balanced1 = tree.balance(tree.root);
 //        list.clear();
-//        balanced.print(balanced.root, list);
+//        balanced1.print(balanced1.root, list);
 //        System.out.println(list.stream().map(x -> "" + x).collect(Collectors.joining(", ")));
 
-        var balanced = tree.build(tree.root);
+        var balanced = tree.balanceTree(tree.root);
         list.clear();
-        print(balanced, list);
+        printToList(balanced, list);
         System.out.println(list.stream().map(x -> "" + x).collect(Collectors.joining(", ")));
+
+        list.clear();
+        scan(balanced, list);
+        System.out.println(list.stream().map(x -> "" + x).collect(Collectors.joining(", ")));
+
     }
 }

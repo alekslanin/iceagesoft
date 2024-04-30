@@ -1,4 +1,4 @@
-package coding.tree;
+package coding.collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TreeTest {
 
     // public class TreeMap<K,V> extends AbstractMap<K,V> implements NavigableMap<K,V>, Cloneable, java.io.Serializable
+
+    // TreeMap is a map implementation that keeps its entries sorted according to the natural ordering of its keys
+    // or better still using a comparator if provided by the user at construction time.
 
     // BINARY SEARCH TREE
 
