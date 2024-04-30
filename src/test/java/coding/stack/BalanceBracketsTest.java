@@ -73,7 +73,9 @@ public class BalanceBracketsTest {
         Stack<Character> stack = new Stack<>();
 
         s.chars().forEach(x -> {
+
             Character ch = (char)x;
+
             if(list.contains(ch)) {
                 stack.add(ch);
             } else if(map.containsKey(ch)){

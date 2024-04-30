@@ -1,11 +1,7 @@
 package coding.arrays;
 
 import org.junit.jupiter.api.Test;
-
-import java.io.Console;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CountSubArrayTest {
 
@@ -17,8 +13,7 @@ public class CountSubArrayTest {
         var res = countSubArrays(test);
 
         assertNotNull(res);
-        assertEquals(res[0], expected[0]);
-        assertEquals(res[res.length - 1], expected[expected.length - 1]);
+        assertArrayEquals(expected, res);
     }
 
     int[] countSubArrays(int[] arr) {
@@ -28,13 +23,13 @@ public class CountSubArrayTest {
             int max = arr[i];
             int counter = 0;
             for(int j = i; j != -1; j--) {
-                System.out.println(arr[j]);
+                //System.out.println(arr[j]);
                 if(arr[j] > max) break;
                 counter++;
             }
 
             for(int j = i + 1; j != arr.length; j++) {
-                System.out.println(arr[j]);
+                //System.out.println(arr[j]);
                 if(arr[j] > max) break;
                 counter++;
             }
