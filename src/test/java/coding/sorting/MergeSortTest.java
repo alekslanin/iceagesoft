@@ -41,17 +41,18 @@ public class MergeSortTest {
         int[] actual = {100, 200, -1, 5, 1, 6, 2, 3, 4 };
         int[] expected = { -1, 1, 2, 3, 4, 5, 6, 100, 200 };
 
-//        mergeSort(actual, actual.length);
-//        assertArrayEquals(expected, actual);
-
-        sort(actual, 0, actual.length - 1);
+        simpleMergeSort(actual, actual.length);
         assertArrayEquals(expected, actual);
+
+        int[] actual1 = {100, 200, -1, 5, 1, 6, 2, 3, 4 };
+        mergeSort(actual1, 0, actual.length - 1);
+        assertArrayEquals(expected, actual1);
 
     }
 
     // Main function that sorts arr[l..r] using
     // merge()
-    void sort(int arr[], int l, int r)
+    void mergeSort(int[] arr, int l, int r)
     {
         if (l < r) {
 
@@ -59,8 +60,8 @@ public class MergeSortTest {
             int m = l + (r - l) / 2;
 
             // Sort first and second halves
-            sort(arr, l, m);
-            sort(arr, m + 1, r);
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
 
             // Merge the sorted halves
             merge(arr, l, m, r);
@@ -121,7 +122,7 @@ public class MergeSortTest {
     }
 
 
-    public static void mergeSort(int[] array, int n) {
+    public static void simpleMergeSort(int[] array, int n) {
         if (n < 2) {
             return;
         }
@@ -133,8 +134,8 @@ public class MergeSortTest {
         arraycopy(array, 0, leftArray, 0, mid);
         if (n - mid >= 0) arraycopy(array, mid, rightArray, 0, n - mid);
 
-        mergeSort(leftArray, mid);
-        mergeSort(rightArray, n - mid);
+        simpleMergeSort(leftArray, mid);
+        simpleMergeSort(rightArray, n - mid);
 
         merge(array, leftArray, rightArray, mid, n - mid);
     }

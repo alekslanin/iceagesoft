@@ -37,7 +37,10 @@ public class CountingTrianglesTest {
         var arr1 = Stream.of(new Sides(5,8,9),new Sides(5,8,9),new Sides(5,8,9),new Sides(5,8,9),new Sides(5,8,9) ).collect(Collectors.toCollection(ArrayList::new));
         assertEquals(1, countDistinctTriangles(arr1));
 
-        var arr2 = Stream.of(new Sides(5,8,9),new Sides(50,8,9),new Sides(5,8,9),new Sides(5,8,9),new Sides(5,8,9) ).collect(Collectors.toCollection(ArrayList::new));
+        //arr = [[5, 8, 9], [50, 8, 9], [9, 5, 8], [5, 8, 9], [9, 8, 5], [8, 9, 5], [8, 5, 9]]
+        //output = 2
+
+        var arr2 = Stream.of(new Sides(5,8,9),new Sides(50,8,9),new Sides(5,8,9),new Sides(8,9, 5),new Sides(8,9, 5) ).collect(Collectors.toCollection(ArrayList::new));
         assertEquals(2, countDistinctTriangles(arr2));
     }
 

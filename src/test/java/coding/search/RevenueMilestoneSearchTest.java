@@ -5,19 +5,30 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.arraycopy;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RevenueMilestoneSearchTest {
 
     /*
     Revenue Milestones
-    We keep track of the revenue Facebook makes every day, and we want to know on what days Facebook hits certain revenue milestones. Given an array of the revenue on each day, and an array of milestones Facebook wants to reach, return an array containing the days on which Facebook reached every milestone.
+
+    We keep track of the revenue Facebook makes every day, and we want to know on what days Facebook hits certain revenue milestones.
+    Given an array of the revenue on each day, and an array of milestones Facebook wants to reach,
+    return an array containing the days on which Facebook reached every milestone.
+
     Signature
     int[] getMilestoneDays(int[] revenues, int[] milestones)
+
     Input
-    revenues is a length-N array representing how much revenue FB made on each day (from day 1 to day N). milestones is a length-K array of total revenue milestones.
+    revenues is a length-N array representing how much revenue FB made on each day (from day 1 to day N).
+    milestones is a length-K array of total revenue milestones.
+
     Output
     Return a length-K array where K_i is the day on which FB first had milestones[i] total revenue. If the milestone is never met, return -1.
+
+
     Example
     revenues = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     milestones = [100, 200, 500]
@@ -56,23 +67,40 @@ public class RevenueMilestoneSearchTest {
 //        int index3 = runBinarySearch(revenues, 51);
 //        assertEquals(-1, index3);
 
-        var result = getMilestoneDays(revenues, milestones);
-        assertEquals(output[0], result[0]);
-        assertEquals(output[1], result[1]);
-        assertEquals(output[2], result[2]);
+        var result = getMilestoneDaysSimple(revenues, milestones);
+        assertArrayEquals(output, result);
+    }
+
+    int[] getMilestoneDaysSimple(int[] revenues, int[] milestones) {
+
+        int[] result = new int[milestones.length];
+
+        int revenue = 0;
+        int pointer = 0;
+        for (int i = 0; i != revenues.length; i++) {
+            revenue += revenues[i];
+
+            if(milestones[pointer] <= revenue) {
+                result[pointer++] = i + 1;
+            }
+        }
+
+        return result;
     }
 
     int[] getMilestoneDays(int[] revenues, int[] milestones) {
-        int[] list = new int[revenues.length];
+
+        int[] aggegatedRevenue = new int[revenues.length];
+
         int previous = 0;
         for (int i = 0; i != revenues.length; i++) {
-            list[i] = previous + revenues[i];
+            aggegatedRevenue[i] = previous + revenues[i];
             previous += revenues[i];
         }
 
         int[] result = new int[milestones.length];
         for (int i = 0; i != milestones.length; i++) {
-            result[i] = runBinarySearchClosest(list, milestones[i], false);
+            result[i] = runBinarySearchClosest(aggegatedRevenue, milestones[i], false);
         }
 
         return result;

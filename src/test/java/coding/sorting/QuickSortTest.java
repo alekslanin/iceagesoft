@@ -30,9 +30,6 @@ public class QuickSortTest {
         int[] actual = {100, 200, -1, 2, 5, 1, 6, 2, 3, 4 };
         int[] expected = { -1, 1, 2, 2, 3, 4, 5, 6, 100, 200 };
 
-//        mergeSort(actual, actual.length);
-//        assertArrayEquals(expected, actual);
-
         sort(actual, 0, actual.length - 1);
         assertArrayEquals(expected, actual);
 

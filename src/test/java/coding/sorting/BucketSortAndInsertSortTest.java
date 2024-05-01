@@ -21,6 +21,7 @@ The main step to analyze is step 3. This step also takes O(n) time on average if
 
 Auxiliary Space: O(n+k)
  */
+
 public class BucketSortAndInsertSortTest {
 
     /*
@@ -45,7 +46,21 @@ public class BucketSortAndInsertSortTest {
                 bucket.set(j + 1, bucket.get(j));
                 j--;
             }
+
             bucket.set(j + 1, key);
+        }
+    }
+
+    static void insertionSort2(List<Float> bucket) {
+        for (int i = 1; i < bucket.size(); i++) {
+            System.out.println("at " + i + " : "  + bucket.get(i));
+            for (int j = i; j > 0; j--) {
+                var current = bucket.get(j);
+                var prev = bucket.get(j - 1);
+                if(current >= prev) break;
+                bucket.set(j, prev);
+                bucket.set(j - 1, current);
+            }
         }
     }
 
@@ -53,13 +68,15 @@ public class BucketSortAndInsertSortTest {
     void run () {
         float[] arr = {
                 (float)0.897,
+                (float)0.575,
                 (float)0.565,
                 (float)0.656,
                 (float)0.1234,
                 (float)0.665,
+                (float)0.555,
                 (float)0.3434 };
 
-        float[] expected = { (float)0.1234,  (float)0.3434,  (float)0.565,  (float)0.656,  (float)0.665,  (float)0.897 };
+        float[] expected = { (float)0.1234,  (float)0.3434,  (float)0.555,  (float)0.565,  (float)0.575,  (float)0.656,  (float)0.665,  (float)0.897 };
 
         bucketSort(arr, arr.length);
         assertArrayEquals(expected, arr);
@@ -86,7 +103,7 @@ public class BucketSortAndInsertSortTest {
         // 3) Sort individual buckets
         for (int i = 0; i < n; i++) {
             //Collections.sort(buckets[i]);
-            insertionSort(buckets[i]);
+            insertionSort2(buckets[i]);
 
         }
 
