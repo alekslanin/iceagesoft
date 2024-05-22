@@ -14,7 +14,7 @@ public class MostFrequentTest {
     @Test
     void run () {
 
-        int arr[] = {40,50,30,40,50,30,30};
+        int []arr = {40,50,30,40,50,30,30};
         int n = arr.length;
 
         assertEquals(30, mostFrequent(arr, n));
