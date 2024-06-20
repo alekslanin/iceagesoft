@@ -22,6 +22,9 @@ public class PairSumsTest {
     void run() {
         int K = 6;
 
+        int[] a = {1, 5, 7, -1, 5, 5, 1};
+        assertEquals(7, getPairsCount2(a, K));
+
         int[] small = {1, 5, 7, -1, 5, 5, 1, 1};
         assertEquals(10, getPairsCount2(small, K));
 
@@ -81,21 +84,21 @@ public class PairSumsTest {
 
     static int getPairsCount2(int[] array, int k)
     {
-        HashMap<Integer, Integer> m = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         int count = 0;
 
         for (int value : array) {
 
             int needed = k - value;
 
-            if (m.containsKey(needed)) {
-                count += m.get(needed);
+            if (map.containsKey(needed)) {
+                count += map.get(needed);
             }
 
-            if (m.containsKey(value)) {
-                m.put(value, m.get(value) + 1);
+            if (map.containsKey(value)) {
+                map.put(value, map.get(value) + 1);
             } else {
-                m.put(value, 1);
+                map.put(value, 1);
             }
         }
 

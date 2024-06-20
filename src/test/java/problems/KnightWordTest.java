@@ -13,13 +13,6 @@ public class KnightWordTest {
         long result = SolveMatrix();
         System.out.println(result);
         System.out.println(Counter);
-
-        //if(canReuseLetter) assertEquals(3847, result);
-        //else assertEquals(375, result);
-        // 37987
-        // 180882
-        // 34379
-        // 180882
     }
 
     public static long SolveMatrix() {
@@ -157,7 +150,6 @@ public class KnightWordTest {
             }
             System.out.println();
         }
-
 
         var word = new String(array);
         System.out.println("WORD :: " + word);

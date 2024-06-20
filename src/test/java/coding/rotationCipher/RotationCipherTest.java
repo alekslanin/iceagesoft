@@ -9,6 +9,7 @@ public class RotationCipherTest {
     @Test
     void run() {
         assertEquals("defDEF456", rotationalCipher("abcABC123", 3));
+        assertEquals("defDEF", rotationalCipher("abcABC", (26*3 + 3)));
         assertEquals("xycXYC1", rotationalCipher("uvzUVZ8", 3));
         assertEquals("Cheud-726?", rotationalCipher("Zebra-493?", 3));
         assertEquals("nopqrstuvwxyzABCDEFGHIJKLM9012345678", rotationalCipher("abcdefghijklmNOPQRSTUVWXYZ0123456789", 39));
@@ -34,16 +35,6 @@ public class RotationCipherTest {
         } else return input;
     }
 
-    int getPosition(char input, char[] array) {
-        int position = -1;
-        for (int index = 0; index < array.length; index++) {
-            if (array[index] == input) {
-                position = index;
-            }
-        }
-        return position;
-    }
-
     char rotate(char input, int rotationFactor, char[] array) {
         int position = getPosition(input, array);
 
@@ -54,5 +45,15 @@ public class RotationCipherTest {
         int p = position + adjustedFactor;
         if(p >= array.length) p = p - array.length;
         return array[p];
+    }
+
+    int getPosition(char input, char[] array) {
+        int position = -1;
+        for (int index = 0; index < array.length; index++) {
+            if (array[index] == input) {
+                position = index;
+            }
+        }
+        return position;
     }
 }

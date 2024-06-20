@@ -182,6 +182,5 @@ public class BinaryTreeTest {
         list.clear();
         scan(balanced, list);
         System.out.println(list.stream().map(x -> "" + x).collect(Collectors.joining(", ")));
-
     }
 }

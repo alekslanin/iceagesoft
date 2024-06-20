@@ -47,7 +47,7 @@ public class BalanceBracketsTest {
 
     @Test
     void run() {
-        var z = "{}()[]";
+        var z = "{[]}()[]";
         assertTrue(isBalanced(z));
 
         var b = "{[()]}";
@@ -56,7 +56,7 @@ public class BalanceBracketsTest {
         var a = "{(})";
         assertFalse(isBalanced(a));
 
-        var w = "{[]}()[{}]";
+        var w = "{[]}()[{[()]}]";
         assertTrue(isBalanced(w));
 
     }

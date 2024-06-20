@@ -23,13 +23,11 @@ public class CountSubArrayTest {
             int max = arr[i];
             int counter = 0;
             for(int j = i; j != -1; j--) {
-                //System.out.println(arr[j]);
                 if(arr[j] > max) break;
                 counter++;
             }
 
             for(int j = i + 1; j != arr.length; j++) {
-                //System.out.println(arr[j]);
                 if(arr[j] > max) break;
                 counter++;
             }

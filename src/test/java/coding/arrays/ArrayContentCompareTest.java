@@ -8,20 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayContentCompareTest {
 
-    boolean areTheyEqual(int[] array_a, int[] array_b) {
-        if(array_a.length != array_b.length) {
-            return false;
-        }
-
-        Arrays.sort(array_a);
-        Arrays.sort(array_b);
-
-        for(int i = 0; i != array_a.length; i++) {
-            if(array_a[i] != array_b[i]) return false;
-        }
-        return true;
-    }
-
     @Test
     public void run() {
         int[] array_a_1 = {1, 2, 3, 4};
@@ -37,4 +23,17 @@ public class ArrayContentCompareTest {
         assertFalse(output_2);
     }
 
+    boolean areTheyEqual(int[] array_a, int[] array_b) {
+        if(array_a.length != array_b.length) {
+            return false;
+        }
+
+        Arrays.sort(array_a);
+        Arrays.sort(array_b);
+
+        for(int i = 0; i != array_a.length; i++) {
+            if(array_a[i] != array_b[i]) return false;
+        }
+        return true;
+    }
 }

@@ -38,9 +38,7 @@ public class BalancedSplitTest {
 
         Arrays.sort(arr);
 
-        int total = IntStream.of(arr).sum();
-
-        int left = total;
+        int left = IntStream.of(arr).sum();
         int right = 0;
 
         for(int i = arr.length - 1; i != 0; i--) {
