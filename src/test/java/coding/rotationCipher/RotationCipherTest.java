@@ -40,7 +40,7 @@ public class RotationCipherTest {
 
         if(position == -1) return input;
 
-        int adjustedFactor = rotationFactor % array.length;
+        int adjustedFactor = rotationFactor % array.length; // in case factor is greater then array
 
         int p = position + adjustedFactor;
         if(p >= array.length) p = p - array.length;

@@ -46,7 +46,7 @@ public class BalancedSplitTest {
             left -= value;
             right += value;
 
-            if(value <= arr[i - 1]) break;
+            if(value <= arr[i - 1]) break; // values on the right side cannot be less than on the left
 
             if(left < right) break;
 

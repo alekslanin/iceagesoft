@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ArraysToListAndSearch {
+public class ArraysToListAndSearchTest {
 
     int[] revenues = new int[] {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 
