@@ -1,4 +1,4 @@
-package whatsnew;
+package javalanguage;
 
 import org.junit.jupiter.api.Test;
 
