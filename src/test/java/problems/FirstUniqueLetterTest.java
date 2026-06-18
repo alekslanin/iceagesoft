@@ -1,6 +1,8 @@
 package problems;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static java.util.stream.Collectors.counting;
@@ -11,6 +13,7 @@ public class FirstUniqueLetterTest {
 
     @Test
     void run() {
+        assertEquals(3, get("aoazcobqqbw"));
         assertEquals(-1, get("aabb"));
         assertEquals(0, get("zaabb"));
         assertEquals(3, get("aoazcobqqbw"));
