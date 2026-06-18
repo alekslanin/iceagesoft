@@ -1,0 +1,31 @@
+name: Sync Release Branch
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+
+jobs:
+  sync-release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync release branch
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          
+          # Checkout release branch
+          git checkout release/1.0.1
+          
+          # Merge develop into release
+          git merge develop --no-edit
+          
+          # Push changes
+          git push origin release/1.0.1
